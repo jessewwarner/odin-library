@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aquamarine;
+}
+
+.main-wrapper {
+    max-width: 1280px;
+    height: 100vh;
+    background-color: bisque;
+    margin: 0 auto;
+}
+
+.books-container {
+    width: 700px;
+    height: auto;
+    resize: both;
+    overflow: auto;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.book {
+    width: 180px;
+    height: 180px;
+}
+
+.mini-book {
+    width: 80px;
+    height: 80px;
+}
+
+.grid {
+    display: grid;
+    gap: 16px;
+}
+
+.auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-auto-rows: 180px;
+    justify-items: center;
+}
+
+.auto-fill {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-auto-rows: 80px;
+    justify-items: center;
+}
+
+.border-red {
+    border: 2px solid red;
+}
+
+.border-green {
+    border: 2px solid green;
+}
