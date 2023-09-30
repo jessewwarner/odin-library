@@ -14,9 +14,10 @@
     --body-bg-clr: rgb(15, 15, 15);
     --btn-bg-clr: rgb(15, 15, 15);
     --btn-font-clr: rgb(225, 225, 225);
-    --header-bg-clr: rgb(125, 125, 125);
+    --header-bg-clr: rgb(97, 97, 97);
     --header-font-clr: rgb(220, 220, 220);
-    --footer-bg-clr: rgb(125, 125, 125);
+    --header-link-clr: rgb(202, 202, 202);
+    --footer-bg-clr: rgb(90, 90, 90);
     --footer-font-clr: rgb(220, 220, 220);
 }
 
@@ -46,6 +47,7 @@ body {
 
 a {
     text-decoration: none;
+    color: var(--header-link-clr);
 }
 
 .nav-link {
