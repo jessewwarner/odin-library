@@ -24,9 +24,39 @@ body {
     background-color: var(--body-bg-clr);
 }
 
-header {
+.header-content {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: var(--header-bg-clr);
     color: var(--header-font-clr);
+}
+
+.title {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.nav-links {
+    display: inline-flex;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-link {
+    list-style-type: none;
+    padding: 0px 30px;
+    font-size: 1.3rem;
+}
+
+.logo {
+    border-radius: 50%;
+    scale: 0.8;
 }
 
 footer {
