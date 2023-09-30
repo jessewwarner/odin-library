@@ -130,7 +130,10 @@ newBookDialog.addEventListener('close', () => {
     pagesError.style.display = 'none';
 })
 
-document.addEventListener('DOMContentLoaded', loadBooksFromLibrary);
+document.addEventListener('DOMContentLoaded', () => {
+    const books = loadBooksFromLibrary();
+    updateBooks(books);
+});
 
 const removeAll = document.querySelector('.rem-books-btn');
 removeAll.addEventListener('click', () => {
