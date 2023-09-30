@@ -33,14 +33,17 @@
                     <div class="form-input">
                         <label for="title-input">Title</label>
                         <input type="text" name="title" id="title-input">
+                        <div id="title-empty">* Required</div>
                     </div>
                     <div class="form-input">
                         <label for="author-input">Author</label>
                         <input type="text" name="author" id="author-input">
+                        <div id="author-empty">* Required</div>
                     </div>
                     <div class="form-input">
                         <label for="pages-input">Pages</label>
                         <input type="number" name="pages" id="pages-input">
+                        <div id="pages-empty">* Required and must be positive</div>
                     </div>
                     <div class="checkbox-input">
                         <label for="read-input">Read: </label>
@@ -53,7 +56,7 @@
                 </form>
             </dialog>
             <button class="add-book-btn">New Book</button>
-            <button class="rem-books-btn">Remove All Books</button>
+            <button class="rem-books-btn">Remove All</button>
             <div class="books-container flex gap-16 wrap"></div>
         </div>
         <footer>

@@ -92,13 +92,21 @@ footer {
     transform: translate(-50%, -50%);
     padding: 10px;
     background-color: var(--header-bg-clr);
-    border: 3px solid black;
+    border: 3px solid rgb(182, 182, 182);
     border-radius: 15px;
 }
 
 ::backdrop {
     background-color: black;
     opacity: 0.7;
+}
+
+#title-empty,
+#author-empty,
+#pages-empty {
+    opacity: 0;
+    font-size: 1.1rem;
+    color: red;
 }
 
 .new-book-form {
@@ -141,7 +149,8 @@ input {
     justify-content: space-evenly;
 }
 
-.add-book-btn {
+.add-book-btn,
+.rem-books-btn {
     background-color: var(--btn-bg-clr);
     color: var(--btn-font-clr);
     font-size: 1.5rem;

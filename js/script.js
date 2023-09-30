@@ -7,6 +7,9 @@ const authorInput = document.getElementById('author-input');
 const pagesInput = document.getElementById('pages-input');
 const readInput = document.getElementById('read-input');
 const submitBtn = document.getElementById('submit-btn');
+const titleError = document.getElementById('title-empty');
+const authorError = document.getElementById('author-empty');
+const pagesError = document.getElementById('pages-empty');
 
 
 function addBooksToPage(books){
@@ -77,7 +80,23 @@ addBtn.addEventListener('click', (e) => {
 });
 
 submitBtn.addEventListener('click', (e) => {
+    let error = false;
     e.preventDefault();
+
+    if (titleInput.value === ''){
+        titleError.style.opacity = 1;
+        error = true;
+    } else titleError.style.opacity = 0;
+    if (authorInput.value === ''){
+        authorError.style.opacity = 1;
+        error = true;
+    } else authorError.style.opacity = 0;
+    if (pagesInput.value.length === 0 || pagesInput.value <= 0){
+        pagesError.style.opacity = 1;
+        error = true;
+    } else pagesError.style.opacity = 0;
+    if (error) return;
+
     const book = new Book(titleInput.value, authorInput.value, pagesInput.value, readInput.checked);
     addBookToLibrary(book);
     newBookDialog.close();
@@ -85,6 +104,9 @@ submitBtn.addEventListener('click', (e) => {
 
 newBookDialog.addEventListener('close', () => {
     dialogForm.reset();
+    authorError.style.display = 'none';
+    titleError.style.display = 'none';
+    pagesError.style.display = 'none';
 })
 
 document.addEventListener('DOMContentLoaded', loadBooksFromLibrary);
