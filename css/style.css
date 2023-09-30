@@ -9,6 +9,9 @@
     --book-card-ctr-clr: rgb(58, 58, 58);
     --book-card-outer-clr: rgb(12, 12, 12);
     --book-card-shadow-clr: rgb(180,180,180);
+    --book-card-font-clr: rgb(200, 200, 200);
+    --book-card-btn-bg-clr: rgb(0, 0, 0);
+    --book-card-btn-font-clr: rgb(200, 200, 200);
     --book-wrapper-ctr-clr: rgb(87, 87, 87);
     --book-wrapper-outer-clr: rgb(34, 34, 34);
     --body-bg-clr: rgb(15, 15, 15);
@@ -82,6 +85,62 @@ footer {
     text-align: center;
 }
 
+#new-book-dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: var(--header-bg-clr);
+    border: 3px solid black;
+    border-radius: 15px;
+}
+
+::backdrop {
+    background-color: black;
+    opacity: 0.7;
+}
+
+.new-book-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 380px;
+    height: 440px;
+    background-color: var(--header-bg-clr);
+    color: var(--book-card-font-clr);
+
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.checkbox-input {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+#read-input{
+    margin-left: 20px;
+}
+
+input {
+    height: 30px;
+    font-size: 1.4rem;
+}
+
+.dialog-btns {
+    display: inline-flex;
+    justify-content: space-evenly;
+}
+
 .add-book-btn {
     background-color: var(--btn-bg-clr);
     color: var(--btn-font-clr);
@@ -92,7 +151,7 @@ footer {
 }
 
 .books-container {
-    width: 90vw;
+    width: 100vw;
     min-width: 255px;
     max-width: 904px;
     padding: 24px 16px;
@@ -102,6 +161,7 @@ footer {
 .book-card {
     display: grid;
     justify-content: center;
+    justify-items: center;
     align-content: space-around;
     flex-shrink: 0;
     width: var(--book-width);
@@ -112,7 +172,19 @@ footer {
     padding: 10px;
     font-size: 1.4rem;
     font-weight: 600;
+    color: var(--book-card-font-clr);
     box-shadow: 2px 3px 8px var(--book-card-shadow-clr);
+}
+
+.remove-book-btn,
+.read-btn,
+.dialog-btn {
+    width: 150px;
+    height: 40px;
+    font-size: 1.25rem;
+    border-radius: 20px;
+    background-color: var(--book-card-btn-bg-clr);
+    color: var(--book-card-btn-font-clr);
 }
 
 .flex {
