@@ -12,9 +12,9 @@ const authorError = document.getElementById('author-empty');
 const pagesError = document.getElementById('pages-empty');
 
 
-function addBooksToPage(books){
+function updateBooks(books){
     bookContainer.textContent = '';
-
+    let index = 0;
     books.forEach(book => {
         const div = document.createElement('div');
         div.classList.add('book-card');
@@ -33,6 +33,16 @@ function addBooksToPage(books){
         pages.textContent = book.pages;
         readBtn.textContent = book.read ? "Read" : "Not Read";
         removeBtn.textContent = "Remove Book";
+        removeBtn.setAttribute('data-index', index);
+        removeBtn.addEventListener('click', ()=> {
+            const index = removeBtn.getAttribute('data-index');
+            removeBookFromLibrary(index);
+            loadBooksFromLibrary();
+        })
+
+        readBtn.addEventListener('click', () => {
+            readBtn.textContent = readBtn.textContent === "Read" ? "Not Read" : "Read";
+        });
 
         div.appendChild(title);
         div.appendChild(author);
@@ -41,21 +51,32 @@ function addBooksToPage(books){
         div.appendChild(removeBtn);
 
         bookContainer.appendChild(div);
+        index++;
     });
 }
 
 function addBookToLibrary(book){
-    let localLibrary = localStorage.getItem('localLibrary');
-    let books = [];
-
-    if (localLibrary !== null) {
-        books = JSON.parse(localLibrary);
-    }
+    const books = loadBooksFromLibrary();
 
     books.push(book);
     localLibrary = JSON.stringify(books);
     localStorage.setItem('localLibrary', localLibrary);
-    addBooksToPage(books);
+    updateBooks(books);
+}
+
+
+function removeBookFromLibrary(index){
+    let books = loadBooksFromLibrary()
+
+    if (books != [] && books.length > 1){
+        books.splice(index, 1);
+        localLibrary = JSON.stringify(books);
+        localStorage.setItem('localLibrary', localLibrary);
+    } else {
+        books = [];
+        localStorage.removeItem('localLibrary');
+    }
+    updateBooks(books);
 }
 
 function loadBooksFromLibrary(){
@@ -64,8 +85,8 @@ function loadBooksFromLibrary(){
 
     if (localLibrary !== null) {
         books = JSON.parse(localLibrary);
-        addBooksToPage(books);
     }
+    return books;
 }
 
 function Book(title, author, pages, read){
@@ -111,8 +132,9 @@ newBookDialog.addEventListener('close', () => {
 
 document.addEventListener('DOMContentLoaded', loadBooksFromLibrary);
 
-const remove = document.querySelector('.rem-books-btn');
-remove.addEventListener('click', () => {
+const removeAll = document.querySelector('.rem-books-btn');
+removeAll.addEventListener('click', () => {
     localStorage.removeItem('localLibrary');
-    addBooksToPage([]);
+    updateBooks([]);
 });
+
