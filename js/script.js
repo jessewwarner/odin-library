@@ -1,4 +1,5 @@
-const addBtn = document.querySelector('.add-book-btn');
+const addBookBtn = document.querySelector('.add-book-btn');
+const removeAllBooksBtn = document.querySelector('.rem-books-btn');
 const bookContainer = document.querySelector('.books-container');
 const newBookDialog = document.getElementById('new-book-dialog');
 const dialogForm = document.querySelector('.new-book-form');
@@ -11,7 +12,15 @@ const titleError = document.getElementById('title-empty');
 const authorError = document.getElementById('author-empty');
 const pagesError = document.getElementById('pages-empty');
 
+// Book object
+function Book(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+}
 
+//Empty the bookContainer and repopulate it with books from the local library
 function updateBooks(books){
     bookContainer.textContent = '';
     let index = 0;
@@ -55,6 +64,7 @@ function updateBooks(books){
     });
 }
 
+// Add a book to the local library
 function addBookToLibrary(book){
     const books = loadBooksFromLibrary();
 
@@ -64,7 +74,7 @@ function addBookToLibrary(book){
     updateBooks(books);
 }
 
-
+// Remove a book from the library
 function removeBookFromLibrary(index){
     let books = loadBooksFromLibrary()
 
@@ -79,6 +89,7 @@ function removeBookFromLibrary(index){
     updateBooks(books);
 }
 
+// Get the books in the library
 function loadBooksFromLibrary(){
     let localLibrary = localStorage.getItem('localLibrary');
     let books = [];
@@ -89,14 +100,7 @@ function loadBooksFromLibrary(){
     return books;
 }
 
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
-addBtn.addEventListener('click', (e) => {
+addBookBtn.addEventListener('click', (e) => {
     newBookDialog.showModal();
 });
 
@@ -104,6 +108,7 @@ submitBtn.addEventListener('click', (e) => {
     let error = false;
     e.preventDefault();
 
+    // Validation checks for form input
     if (titleInput.value === ''){
         titleError.style.opacity = 1;
         error = true;
@@ -130,14 +135,13 @@ newBookDialog.addEventListener('close', () => {
     pagesError.style.display = 'none';
 })
 
+removeAllBooksBtn.addEventListener('click', () => {
+    localStorage.removeItem('localLibrary');
+    updateBooks([]);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const books = loadBooksFromLibrary();
     updateBooks(books);
-});
-
-const removeAll = document.querySelector('.rem-books-btn');
-removeAll.addEventListener('click', () => {
-    localStorage.removeItem('localLibrary');
-    updateBooks([]);
 });
 
